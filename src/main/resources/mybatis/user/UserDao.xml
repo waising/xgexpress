@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xgtongcheng.xgexpress.user.dao.UserDao">
+    <resultMap type="User" id="userMap">
+        <id column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+    </resultMap>
 
-    <select id="getUser" resultType="user">
+    <select id="getUser" resultMap="userMap">
         select * from user
     </select>
 </mapper>

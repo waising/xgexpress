@@ -6,6 +6,8 @@ import com.xgtongcheng.xgexpress.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by WWX on 2015/04/24.
  */
@@ -15,8 +17,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Override
-    public User getUser() {
+    public UserServiceImpl(){}
+    public List<User> getUser() {
         return userDao.getUser();
     }
 }

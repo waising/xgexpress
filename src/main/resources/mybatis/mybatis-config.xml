@@ -39,6 +39,6 @@
 
     <!--aliase-->
     <typeAliases>
-        <typeAlias type="com.xgtongcheng.xgexpress.user.entity.User" alias="user"/>
+        <typeAlias type="com.xgtongcheng.xgexpress.user.entity.User" alias="User"/>
     </typeAliases>
 </configuration>
