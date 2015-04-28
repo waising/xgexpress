@@ -14,19 +14,15 @@
 
     <description>Spring Configuration</description>
 
-    <!-- 加载配置属性文件 <context:property-placeholder location="classpath*:config/application.properties" />-->
-
+    <!-- 加载配置属性文件 -->
+    <context:property-placeholder location="classpath:config/application.properties" />
     <!-- 引入配置文件 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:config/application.properties" />
-    </bean>
     <!-- 加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 <util:properties id="APP_PROP" location="classpath:config/application.properties" local-override="true"/>-->
 
 
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.xgtongcheng.xgexpress"><!-- base-package 如果多个，用“,”分隔 -->
-
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
 
@@ -34,8 +30,9 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:mybatis/**/*.xml"></property>
+        <property name="typeAliasesPackage" value="com.xgtongcheng.xgexpress.*.entity" />    <!-- 实体类包 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:mybatis/**/*Dao.xml"></property>
     </bean>
 
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->

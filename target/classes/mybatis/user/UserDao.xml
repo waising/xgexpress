@@ -7,6 +7,8 @@
     </resultMap>
 
     <select id="getUser" resultMap="userMap">
-        select * from user
+        <![CDATA[
+          select NAME ,sex from user
+        ]]>
     </select>
 </mapper>
