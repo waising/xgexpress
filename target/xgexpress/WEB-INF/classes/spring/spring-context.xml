@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"
-       default-lazy-init="true"  default-autowire="byName">
+        default-lazy-init="true"  default-autowire="byName">
 
     <description>Spring Configuration</description>
 
@@ -36,7 +36,7 @@
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xgtongcheng.xgexpress" />
-        <property value="com.xgtongcheng.xgexpress.common.annotation.MyBatisDao" name="markerInterface"/>
+        <property  name="annotationClass" value="com.xgtongcheng.xgexpress.common.annotation.MyBatisDao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
