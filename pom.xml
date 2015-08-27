@@ -182,6 +182,12 @@
           <version>${mybatis-spring.version}</version>
       </dependency>
 
+      <dependency>
+          <groupId>com.github.pagehelper</groupId>
+          <artifactId>pagehelper</artifactId>
+          <version>4.0.0</version>
+      </dependency>
+
       <!-- connection pool -->
       <dependency>
           <groupId>com.alibaba</groupId>
