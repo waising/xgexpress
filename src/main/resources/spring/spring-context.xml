@@ -15,9 +15,10 @@
     <description>Spring Configuration</description>
 
     <!-- 加载配置属性文件 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:/config/application.properties" />
-    <!-- 加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>-->
-    <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/application.properties" />
+    <!-- <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>
+    加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>-->
+
 
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.xgtongcheng.xgexpress"><!-- base-package 如果多个，用“,”分隔 -->
@@ -29,15 +30,15 @@
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
         <property name="typeAliasesPackage" value="com.xgtongcheng.xgexpress.*.entity" />    <!-- 实体类包 -->
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:mybatis/**/*Dao.xml"></property>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/**/*Dao.xml"/>
     </bean>
 
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xgtongcheng.xgexpress" />
         <property  name="annotationClass" value="com.xgtongcheng.xgexpress.common.annotation.MyBatisDao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
 
@@ -60,9 +61,9 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/xgtc?characterEncoding=UTF-8&amp;useOldAliasMetadataBehavior=true" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/xgtc?characterEncoding=UTF-8" />
+        <property name="username" value="xgtc" />
+        <property name="password" value="xgtc" />
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="1" />
