@@ -129,22 +129,6 @@ CREATE TABLE `expresstype` (
 INSERT INTO `expresstype` VALUES ('22', '2222');
 
 -- ----------------------------
--- Table structure for `user`
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `name` varchar(50) NOT NULL,
-  `sex` varchar(3) DEFAULT NULL,
-  PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('33', '1');
-INSERT INTO `user` VALUES ('333', '2');
-
--- ----------------------------
 -- Table structure for `userinfo`
 -- ----------------------------
 DROP TABLE IF EXISTS `userinfo`;
