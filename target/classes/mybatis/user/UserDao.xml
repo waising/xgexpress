@@ -2,13 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xgtongcheng.xgexpress.user.dao.UserDao">
     <resultMap type="User" id="userMap">
-        <id column="name" jdbcType="VARCHAR" property="name"/>
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="sex" jdbcType="VARCHAR" property="sex"/>
     </resultMap>
 
-    <select id="getUser" resultMap="userMap">
+    <select id="getUser" resultType="User">
         <![CDATA[
-          select NAME ,sex from user
+          select ID, NAME ,SEX from USERINFO WHERE ID=#{id}
         ]]>
     </select>
+
+    <select id="getUsers" resultMap="userMap">
+        <![CDATA[
+          select ID, NAME ,SEX from USERINFO
+        ]]>
+    </select>
+
 </mapper>
