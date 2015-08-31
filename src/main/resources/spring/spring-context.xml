@@ -15,7 +15,7 @@
     <description>Spring Configuration</description>
 
     <!-- 加载配置属性文件 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/application.properties" />
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/application.properties" order="1" />
     <!-- <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>
     加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>-->
 
@@ -36,9 +36,9 @@
 
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.xgtongcheng.xgexpress" />
         <property  name="annotationClass" value="com.xgtongcheng.xgexpress.common.annotation.MyBatisDao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
 
@@ -61,8 +61,8 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/xgtc?characterEncoding=UTF-8" />
-        <property name="username" value="xgtc" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/xgtc?useUnicode=true&amp;characterEncoding=utf-8" />
+        <property name="username" value="${jdbc.username}" />
         <property name="password" value="xgtc" />
 
         <!-- 配置初始化大小、最小、最大 -->
