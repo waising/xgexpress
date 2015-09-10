@@ -10,15 +10,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"
-        default-lazy-init="true"  default-autowire="byName">
+        default-lazy-init="true">
 
     <description>Spring Configuration</description>
 
     <!-- 加载配置属性文件 -->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:/config/application.properties" />
-    <!-- 加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>-->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/application.properties" order="1" />
+    <!-- 加载应用属性实例，可通过  @Value("#{APP_PROP['jdbc.driver']}") String jdbcDriver 方式引用 -->
     <util:properties id="APP_PROP" location="classpath:/config/application.properties" local-override="true"/>
-
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.xgtongcheng.xgexpress"><!-- base-package 如果多个，用“,”分隔 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -29,15 +28,15 @@
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
         <property name="typeAliasesPackage" value="com.xgtongcheng.xgexpress.*.entity" />    <!-- 实体类包 -->
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:mybatis/**/*Dao.xml"></property>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/**/*Dao.xml"/>
     </bean>
 
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.xgtongcheng.xgexpress" />
         <property  name="annotationClass" value="com.xgtongcheng.xgexpress.common.annotation.MyBatisDao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
 
@@ -57,17 +56,17 @@
     <!-- 数据源配置, 使用 BoneCP 数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="driverClassName" value="${jdbc.driver}" />
 
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/xgtc?characterEncoding=UTF-8&amp;useOldAliasMetadataBehavior=true" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
 
         <!-- 配置初始化大小、最小、最大 -->
-        <property name="initialSize" value="1" />
-        <property name="minIdle" value="2" />
-        <property name="maxActive" value="20" />
+        <property name="initialSize" value="${jdbc.pool.init}" />
+        <property name="minIdle" value="${jdbc.pool.minIdle}" />
+        <property name="maxActive" value="${jdbc.pool.maxActive}" />
 
         <!-- 配置获取连接等待超时的时间 -->
         <property name="maxWait" value="60000" />
