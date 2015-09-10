@@ -10,6 +10,6 @@ import java.util.List;
  */
 @MyBatisDao
 public interface UserDao {
-    public User getUser(String id);
+    public User get(String id);
     public List<User> getUsers();
 }

@@ -8,6 +8,6 @@ import java.util.List;
  * Created by WWX on 2015/04/24.
  */
 public interface UserService {
-    public User getUser(String id);
+    public User get(String id);
     public List<User> getUsers();
 }
