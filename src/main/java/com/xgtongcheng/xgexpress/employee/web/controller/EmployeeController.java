@@ -34,10 +34,10 @@ public class EmployeeController {
         return employeeService.get(id);
     }
 
-    @RequestMapping(value = "/check" ,method={RequestMethod.GET})
+    @RequestMapping(value = "/login" ,method={RequestMethod.POST})
     @ResponseBody
-    public Employee check(String jobno,String pwd) {
-        logger.info("check");
+    public Employee login(String jobno,String pwd) {
+        logger.info("login");
         return employeeService.check(jobno,pwd);
     }
 

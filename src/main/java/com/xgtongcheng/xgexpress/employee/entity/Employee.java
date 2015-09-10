@@ -11,17 +11,17 @@ public class Employee {
     private String id;
 
     /**
-     * ¹¤ºÅ
+     * å·¥å·
      */
     private String jobNo;
 
     /**
-     * ĞÕÃû
+     * å§“å
      */
     private String name;
 
     /**
-     * ÃÜÂë
+     * å¯†ç 
      */
     private String password;
 
