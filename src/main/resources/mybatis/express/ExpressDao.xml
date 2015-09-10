@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgtongcheng.xgexpress.express.dao.ExpressDao">
+    <resultMap type="Express" id="expressBaseResultMap">
+        <id property="id" column="ID"  />
+        <result property="no" column="NO"  />
+        <result property="toPlace" column="to_place"  />
+        <result property="fromPlace" column="from_place"  />
+        <result property="price" column="price"  />
+        <result property="remarks" column="remarks"  />
+    </resultMap>
+
+    <resultMap id="expressDaoResultMap" type="Express" extends="expressBaseResultMap" >
+
+        <association property="expressType" column="expresstype_id" javaType="ExpressType"
+                     select="com.xgtongcheng.xgexpress.express.dao.ExpressTypeDao.get"/>
+
+        <association property="expressPeople" column="expresspeople_id" javaType="ExpressPeople"
+                     select="com.xgtongcheng.xgexpress.express.dao.ExpressPeopleDao.get"/>
+
+        <association property="employee" column="EMPLOYEE_ID" javaType="Employee"
+                     select="com.xgtongcheng.xgexpress.employee.dao.EmployeeDao.get"/>
+
+        <collection property="expProcesses" column="Id" javaType="ArrayList"
+                    ofType="ExpressProcess" select="com.xgtongcheng.xgexpress.express.dao.ExpressProcessDao.getProcessesByExpId"/>
+
+    </resultMap>
+
+
+    <sql id="sql_selectColumn">
+        id, no, to_place, from_place,price,remarks,expresstype_id,expresspeople_id,employee_id
+    </sql>
+
+    <select id="get"  parameterType="Express" resultMap="expressDaoResultMap">
+        SELECT
+        <include refid="sql_selectColumn"/>
+        FROM
+        express
+        WHERE id=#{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getExpresses" resultMap="expressDaoResultMap">
+        SELECT
+        <include refid="sql_selectColumn"/>
+        FROM
+        express
+    </select>
+
+    <select id="getExpressId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+          id
+        FROM
+          express
+        WHERE
+          no = #{no,jdbcType=VARCHAR}
+        limit 1
+    </select>
+
+    <insert id="add" parameterType="Express">
+        INSERT INTO
+          express(id,no,to_place,from_place,price,employee_id,
+          expresstype_id,expresspeople_id,remarks)
+        VALUES(
+        #{id,jdbcType=VARCHAR} , #{no,jdbcType=VARCHAR} ,
+        #{toPlace,jdbcType=VARCHAR} , #{fromPlace,jdbcType=VARCHAR} ,
+        #{price,jdbcType=FLOAT} , #{employee.id,jdbcType=VARCHAR} ,
+        #{expressType.id,jdbcType=VARCHAR}, #{expressPeople.id,jdbcType=VARCHAR},
+        #{remarks,jdbcType=VARCHAR}
+        )
+    </insert>
+</mapper>

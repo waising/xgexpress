@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgtongcheng.xgexpress.employee.dao.EmployeeDao">
+    <resultMap type="Employee" id="employeeMap">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="JOBNO" jdbcType="VARCHAR" property="jobno"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+
+    <select id="get" resultType="Employee">
+        <![CDATA[
+          select ID, JOBNO , NAME from EMPLOYEE WHERE ID=#{id}
+        ]]>
+    </select>
+
+    <select id="getEmployees" parameterType="java.lang.String" resultMap="employeeMap">
+        <![CDATA[
+          select ID, JOBNO , NAME from EMPLOYEE where department_id = #{departId}
+        ]]>
+    </select>
+
+    <select id="check" resultType="Employee">
+        <![CDATA[
+          select * from EMPLOYEE WHERE jobno=#{jobno} AND password=#{pwd}
+        ]]>
+    </select>
+</mapper>

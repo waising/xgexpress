@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgtongcheng.xgexpress.express.dao.ExpressPeopleDao">
+    <resultMap id="expressPeopleDaoResultMap" type="ExpressPeople" >
+        <id property="id" column="ID"  />
+        <result property="senderCompany" column="SENDER_COMPANY"  />
+        <result property="senderName" column="SENDER_NAME"  />
+        <result property="senderPhone" column="SENDER_PHONE"  />
+        <result property="senderAddress" column="SENDER_ADDRESS"  />
+        <result property="consigneeCompany" column="CONSIGNEE_COMPANY"  />
+        <result property="consigneeName" column="CONSIGNEE_NAME"  />
+        <result property="consigneePhone" column="CONSIGNEE_PHONE"  />
+        <result property="consigneeAddress" column="CONSIGNEE_ADDRESS"  />
+    </resultMap>
+
+    <select id="get" parameterType="java.lang.String"  resultMap="expressPeopleDaoResultMap">
+        <![CDATA[
+			SELECT
+				id,sender_company,sender_name,sender_phone,sender_address,
+				consignee_company,consignee_name,consignee_phone,consignee_address
+			FROM
+		        expresspeople
+		    WHERE id=#{id}
+	     ]]>
+    </select>
+
+    <insert id="add" parameterType="ExpressPeople">
+        INSERT INTO
+        expresspeople(id,sender_company,sender_name,sender_phone,sender_address,
+				consignee_company,consignee_name,consignee_phone,consignee_address)
+        VALUES(
+        #{id,jdbcType=VARCHAR} , #{senderCompany,jdbcType=VARCHAR} ,
+        #{senderName,jdbcType=VARCHAR} , #{senderPhone,jdbcType=VARCHAR} ,
+        #{senderAddress,jdbcType=VARCHAR} , #{consigneeCompany,jdbcType=VARCHAR} ,
+        #{consigneeName,jdbcType=VARCHAR} , #{consigneePhone,jdbcType=VARCHAR} ,
+        #{consigneeAddress,jdbcType=VARCHAR}
+        )
+    </insert>
+</mapper>
