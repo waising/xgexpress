@@ -7,7 +7,7 @@
         <result column="sex" jdbcType="VARCHAR" property="sex"/>
     </resultMap>
 
-    <select id="getUser" resultType="User">
+    <select id="get" resultType="User">
         <![CDATA[
           select ID, NAME ,SEX from USERINFO WHERE ID=#{id}
         ]]>

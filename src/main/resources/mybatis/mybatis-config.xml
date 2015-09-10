@@ -39,7 +39,14 @@
 
     <!-- 类型别名 -->
     <typeAliases>
-        <typeAlias alias="User" type="com.xgtongcheng.xgexpress.user.entity.User" ></typeAlias>
+        <typeAlias alias="User" type="com.xgtongcheng.xgexpress.user.entity.User" />
+        <typeAlias alias="Department" type="com.xgtongcheng.xgexpress.department.entity.Department" />
+        <typeAlias alias="Employee" type="com.xgtongcheng.xgexpress.employee.entity.Employee" />
+        <typeAlias alias="Express" type="com.xgtongcheng.xgexpress.express.entity.Express" />
+        <typeAlias alias="ExpressPeople" type="com.xgtongcheng.xgexpress.express.entity.ExpressPeople" />
+        <typeAlias alias="ExpressProcess" type="com.xgtongcheng.xgexpress.express.entity.ExpressProcess" />
+        <typeAlias alias="ExpressPeople" type="com.xgtongcheng.xgexpress.express.entity.ExpressPeople" />
+        <typeAlias alias="ExpressType" type="com.xgtongcheng.xgexpress.express.entity.ExpressType" />
     </typeAliases>
 
     <!--

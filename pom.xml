@@ -25,7 +25,7 @@
         <commons-beanutils.version>1.9.1</commons-beanutils.version>
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
         <jackson.version>2.2.3</jackson.version>
-        <fastjson.version>1.1.40</fastjson.version>
+        <fastjson.version>1.2.6</fastjson.version>
         <xstream.version>1.4.7</xstream.version>
         <dozer.version>5.5.1</dozer.version>
         <poi.version>3.9</poi.version>
@@ -307,12 +307,12 @@
           <version>${jackson.version}</version>
       </dependency>
 
-      <!-- fastjson json
+      <!--fastjson json-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
-        </dependency> -->
+        </dependency>
 
       <!-- xstream xml -->
       <dependency>
